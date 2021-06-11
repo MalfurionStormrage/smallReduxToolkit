@@ -83,7 +83,7 @@ export default function AddView() {
             ) : null}
             <div className="my-3">
               <div className="row">
-                <div className="col-sm">
+                <div className="col-sm my-1">
                   <button
                     type="submit"
                     className="btn btn-outline-success w-100 p-2 fw-bolder"
@@ -92,7 +92,7 @@ export default function AddView() {
                     <i className="bi bi-check-circle"></i> Agregar producto{" "}
                   </button>
                 </div>
-                <div className="col-sm">
+                <div className="col-sm my-1">
                   <Link to="/">
                     <button
                       type="reset"

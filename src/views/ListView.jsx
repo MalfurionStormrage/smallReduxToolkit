@@ -1,10 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
+
+import { REMOVER_PRODUCTO } from '../redux/actions/Productos';
 
 export default function ListView() {
+
+  const dispatch = useDispatch();
+
   const { productos } = useSelector(
     (state) => state.persistedReducer.ReducerProducto
   );
+
+  const handleRemover = (id) => {
+    
+    const arrayFiltrada = productos.filter(item => item.id !== id);
+
+    dispatch(REMOVER_PRODUCTO(arrayFiltrada));
+  }
+
+  console.log(productos);
 
   return (
     <section>
@@ -18,28 +32,34 @@ export default function ListView() {
         >
           <thead className="table-dark">
             <tr>
-              <th scope="col">Id Producto</th>
+              <th scope="col">Id</th>
               <th scope="col">Nombre</th>
               <th scope="col">Descripcion</th>
               <th scope="col">Precio</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
-          <tbody>
+          {<tbody>
             {productos.length >= 1 ? (
-              productos.map((item) => (
-                <tr key={item.id}>
-                  <td> {item.id} </td>
-                  <td> {item.nombre} </td>
-                  <td> {item.descripcion} </td>
-                  <td> {item.precio} </td>
+              productos.map(({id , nombre , descripcion , precio}) => (
+                <tr key={id}>
+                  <td> {id} </td>
+                  <td> {nombre} </td>
+                  <td> {descripcion} </td>
+                  <td> {precio} </td>
+                  <td>
+                    <button className="btn btn-outline-danger" onClick={()=> handleRemover(id)}> 
+                      <i className="bi bi-file-earmark-x"></i> 
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="4"> No hay registros </td>
+                <td colSpan="5"> No hay registros </td>
               </tr>
             )}
-          </tbody>
+          </tbody>}
         </table>
       </div>
     </section>
