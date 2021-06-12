@@ -1,15 +1,21 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-/*route*/
-import Routes from "./routes/Routes";
+import React, { Suspense } from "react";
+/*route y componentes */
+import { BrowserRouter as Router } from "react-router-dom";
+import Spinner from "./components/Spinner";
+const Navbar = React.lazy(() => import("./components/Navbar"));
+const Routes = React.lazy(() => import("./routes/Routes"));
 
 export default function App() {
   return (
     <section>
-      <Navbar />
-      <div className="container mt-2">
-        <Routes />
-      </div>
+      <Router>
+        <Suspense fallback={<Spinner />}>
+          <Navbar />
+          <div className="container-fluid mt-2">
+            <Routes />
+          </div>
+        </Suspense>
+      </Router>
     </section>
   );
 }

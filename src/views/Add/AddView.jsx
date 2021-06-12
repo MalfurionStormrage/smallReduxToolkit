@@ -1,39 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-import { AGREGAR_PRODUCTO } from "../redux/actions/Productos";
+import { handleAdd } from "./Add";
 
 export default function AddView() {
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
 
-  const handleAdd = (e) => {
-    e.preventDefault();
-
-    if (
-      document.getElementById("nombre").value === "" ||
-      document.getElementById("descripcion").value === "" ||
-      document.getElementById("precio").value === ""
-    ) {
-      setError(true);
-
-      setTimeout(() => {
-        setError(false);
-      }, 3500);
-      return;
-    }
-
-    const InfoProducto = {
-      id: Date.now(),
-      nombre: document.getElementById("nombre").value,
-      descripcion: document.getElementById("descripcion").value,
-      precio: parseInt(document.getElementById("precio").value),
-    };
-
-    dispatch(AGREGAR_PRODUCTO(InfoProducto));
-    e.target.reset();
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setError(false);
+    }, 3500);
+  }, [error]);
 
   return (
     <>
@@ -41,7 +19,7 @@ export default function AddView() {
         <div className="text-center">
           <h4 className="fw-bolder">Agregar nuevo producto</h4>
         </div>
-        <form onSubmit={(e) => handleAdd(e)}>
+        <form onSubmit={(e) => setError(handleAdd(e, dispatch))}>
           <div className="row">
             <div className="mb-2">
               <label className="form-label">Nombre del producto</label>
@@ -54,9 +32,7 @@ export default function AddView() {
               />
             </div>
             <div className="mb-2">
-              <label className="form-label">
-                Descripcion sobre el producto
-              </label>
+              <label className="form-label">Descripcion del producto</label>
               <textarea
                 rows="8"
                 type="Text"
@@ -77,8 +53,8 @@ export default function AddView() {
               />
             </div>
             {error ? (
-              <div className="w-100 p-2 pt-4 mt-2 text-center alert alert-danger border border-danger">
-                <p> Todo los campos son obligatorios </p>
+              <div className="w-100 p-2 pt-4 mt-2 text-center alert alert-danger border border-danger fw-bolder">
+                <p> Todos los campos son obligatorios. </p>
               </div>
             ) : null}
             <div className="my-3">
@@ -93,15 +69,13 @@ export default function AddView() {
                   </button>
                 </div>
                 <div className="col-sm my-1">
-                  <Link to="/">
-                    <button
-                      type="reset"
-                      className="btn btn-outline-secondary w-100 p-2 fw-bolder"
-                    >
-                      {" "}
-                      <i className="bi bi-eraser"></i> Cancelar
-                    </button>
-                  </Link>
+                  <button
+                    type="reset"
+                    className="btn btn-outline-secondary w-100 p-2 fw-bolder"
+                  >
+                    {" "}
+                    <i className="bi bi-eraser"></i> Cancelar
+                  </button>
                 </div>
               </div>
             </div>

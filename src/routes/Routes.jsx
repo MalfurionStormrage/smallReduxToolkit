@@ -1,16 +1,24 @@
-import React from 'react';
-
-import ListView from '../views/ListView';
-import AddView from '../views/AddView';
-
-import { Switch,  Route } from 'react-router-dom';
+import React, { Suspense } from "react";
+/* componente spinner y funciones de RRD*/
+import SpinnerTwo from "../components/SpinnerTwo";
+import { Switch, Route } from "react-router-dom";
+/* vistas de cada rutas */
+const AddView = React.lazy(() => import("../views/Add/AddView"));
+const ListView = React.lazy(() => import("../views/List/ListView"));
 
 export default function Routes() {
-	return (
-		<Switch>
-			<Route path="/add" component={AddView} />
-			<Route exact path="/" component={ListView} />
-		</Switch>
-	
-	)
+  return (
+    <Suspense fallback={<SpinnerTwo />}>
+      <Switch>
+        <Route path="/add">
+          {" "}
+          <AddView />{" "}
+        </Route>
+        <Route>
+          {" "}
+          <ListView />{" "}
+        </Route>
+      </Switch>
+    </Suspense>
+  );
 }

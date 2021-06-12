@@ -2,6 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const handleNavbar = () => {
+    document.getElementById("navbarText").classList.remove("show");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fw-bolder">
       <div className="container">
@@ -21,13 +25,23 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink activeClassName="active" className="nav-link" to="/">
+              <NavLink
+                activeClassName="text-red"
+                className="nav-link"
+                to="/"
+                onClick={() => handleNavbar()}
+              >
                 Inicio
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink activeClassName="active" className="nav-link" to="/add">
+              <NavLink
+                activeClassName="active"
+                className="nav-link"
+                to="/add"
+                onClick={() => handleNavbar()}
+              >
                 Agregar
               </NavLink>
             </li>
