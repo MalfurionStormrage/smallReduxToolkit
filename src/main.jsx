@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { registerSW } from 'virtual:pwa-register'
 /* componente app */
 import App from "./App";
 /* custom css*/
@@ -36,5 +37,9 @@ CUCO - Lover is a Day
 Shingeki no Kyojin Attack on Titan Season 2 Ending Full
 Swing Lynn · Twin Cabins
 Young · Vacations
+Lil Nas X - Old Town Road
+Stuck in the Sound - Let's Go <- temon , 1000 de 1000 v:
 
 */
+
+registerSW();

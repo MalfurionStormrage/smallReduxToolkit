@@ -5,11 +5,12 @@ export default function Navbar() {
   const handleNavbar = () => {
     document.getElementById("navbarText").classList.remove("show");
   };
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fw-bolder">
       <div className="container">
-        <a className="navbar-brand">List</a>
+        <NavLink className="navbar-brand" to="/">
+          List
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -29,7 +30,7 @@ export default function Navbar() {
                 activeClassName="text-red"
                 className="nav-link"
                 to="/"
-                onClick={() => handleNavbar()}
+                onClick={handleNavbar}
               >
                 Inicio
               </NavLink>
@@ -40,7 +41,7 @@ export default function Navbar() {
                 activeClassName="active"
                 className="nav-link"
                 to="/add"
-                onClick={() => handleNavbar()}
+                onClick={handleNavbar}
               >
                 Agregar
               </NavLink>

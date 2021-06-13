@@ -11,11 +11,18 @@ export default function AddView() {
     setTimeout(() => {
       setError(false);
     }, 3500);
+
+    return () => {
+      console.log("clean up >:v >:v >:v");
+    };
   }, [error]);
 
   return (
     <>
-      <div className="container p-4">
+      <div
+        className="container p-4 shadow-lg rounded"
+        style={{ backgroundColor: "#f7f7f7" }}
+      >
         <div className="text-center">
           <h4 className="fw-bolder">Agregar nuevo producto</h4>
         </div>
@@ -71,10 +78,10 @@ export default function AddView() {
                 <div className="col-sm my-1">
                   <button
                     type="reset"
-                    className="btn btn-outline-secondary w-100 p-2 fw-bolder"
+                    className="btn btn-outline-danger w-100 p-2 fw-bolder"
                   >
                     {" "}
-                    <i className="bi bi-eraser"></i> Cancelar
+                    <i className="bi bi-eraser"></i> Borrar Datos
                   </button>
                 </div>
               </div>

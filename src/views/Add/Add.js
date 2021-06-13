@@ -21,18 +21,19 @@ export const handleAdd = (e, dispatch) => {
     };
 
     dispatch(AGREGAR_PRODUCTO(InfoProducto));
-    e.target.reset();
-
-    Swal.fire({
-      title: "Estado de la acción",
-      icon: "success",
-      text: "El producto fue agregado correctamente.",
-    });
   } catch (error) {
     Swal.fire({
       title: "Estado de la acción",
       icon: "error",
       text: "No fue posible agregar el producto.",
     });
+  } finally {
+    Swal.fire({
+      title: "Estado de la acción",
+      icon: "success",
+      text: "El producto fue agregado correctamente.",
+    });
+
+    e.target.reset();
   }
 };

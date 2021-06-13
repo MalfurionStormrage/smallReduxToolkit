@@ -11,7 +11,7 @@ export default function App() {
       <Router>
         <Suspense fallback={<Spinner />}>
           <Navbar />
-          <div className="container-fluid mt-2">
+          <div className="container-fluid mt-3">
             <Routes />
           </div>
         </Suspense>

@@ -10,3 +10,7 @@ export default function SpinnerTwo() {
     </div>
   );
 }
+
+/*
+	Credits to: https://tobiasahlin.com/spinkit/
+*/
