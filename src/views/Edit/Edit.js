@@ -18,7 +18,7 @@ export const handleEdit = (e, id, productos, dispatch, history) => {
       newid,
       nombre: document.getElementById("nombre").value,
       descripcion: document.getElementById("descripcion").value,
-      precio: document.getElementById("precio").value,
+      precio: parseInt(document.getElementById("precio").value),
     };
 
     const datos = Object.assign([], productos);
@@ -29,7 +29,7 @@ export const handleEdit = (e, id, productos, dispatch, history) => {
           id: id,
           nombre: updateProducto.nombre,
           descripcion: updateProducto.descripcion,
-          precio: updateProducto.precio,
+          precio: updateProducto.precio + ((updateProducto.precio * 19) / 100),/* aqui no implemento thunk como en agregar producto porque solo era para darme idea de la funcionalidad de thunk */
         }
         : { id, nombre, descripcion, precio };
     });
