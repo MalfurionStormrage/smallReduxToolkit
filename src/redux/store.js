@@ -15,9 +15,11 @@ import {
   REGISTER,
 } from "redux-persist";
 import ReducerProducto from "./reducers/Productos";
+import reducerUi from './reducers/ui';
 
 const reducers = combineReducers({
   ReducerProducto,
+  reducerUi
 });
 
 const persistConfig = {

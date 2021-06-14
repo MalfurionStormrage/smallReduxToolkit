@@ -1,5 +1,4 @@
-import { AGREGAR_PRODUCTO } from "../../redux/actions/Productos";
-import Swal from "sweetalert2";
+import { thunkAgregarProducto } from "../../redux/actions/Productos";
 
 export const handleAdd = (e, dispatch) => {
   try {
@@ -20,20 +19,9 @@ export const handleAdd = (e, dispatch) => {
       precio: parseInt(document.getElementById("precio").value),
     };
 
-    dispatch(AGREGAR_PRODUCTO(InfoProducto));
-  } catch (error) {
-    Swal.fire({
-      title: "Estado de la acción",
-      icon: "error",
-      text: "No fue posible agregar el producto.",
-    });
+    dispatch(thunkAgregarProducto(InfoProducto));
   } finally {
-    Swal.fire({
-      title: "Estado de la acción",
-      icon: "success",
-      text: "El producto fue agregado correctamente.",
-    });
-
     e.target.reset();
   }
+
 };
